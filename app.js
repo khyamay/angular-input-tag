@@ -1,30 +1,29 @@
 angular.module('myApp', [])
-	.controller('TagsCtrl', ['$scope', function($scope){
+	.controller('TagsCtrl', ['$scope', '$timeout', function($scope, $timeout){
 		$scope.inputTags = [];
 		var tags = [];
 		
 		   $scope.addTag = function() {
-					console.log('moooooo', $scope.tagText);
+					console.log('$scope.tagText', $scope.tagText);
 		     if ($scope.tagText.length == 0) {
 		       return;
 		     }
 					if ($scope.tagText.indexOf(',') != -1){
 						var splitTags = $scope.tagText.split(',');
-						// console.log('putiiii', splitTags)
-						// tags.push(splitTags); 
-						// console.log('tagss', tags)
 						tags = splitTags;
 
 					} else {
 						tags.push($scope.tagText);
 					}
 						console.log('wutt', tags.length)
-		     		for (var i = tags.length - 1; i >= 0; i--) {
-		     		console.log(tags[i])
-		     			$scope.inputTags.push({name: tags[i]});
+		     		for (var i = 0;  i < tags.length; i++) {
+		     		var tag = $.trim(tags[i]);
+		     		console.log(tag)
+		     			$scope.inputTags.push({name: tag});
 		     		};
-		     $scope.tagText = '';
+		     $timeout(function(){$scope.tagText = '';})
 		     tags = [];
+
 		   }
 		
 		   $scope.deleteTag = function(key) {
@@ -75,13 +74,11 @@ angular.module('myApp', [])
 	         }
 	       });
 
+	       //for pasting
 	       element.bind('paste', function(e){
-	       	// if (e.currentTarget.id === "mofo"){
 	       	console.log('imm getting called',  e)
- 					// scope.tagText = e.originalEvent.clipboardData.getData('text/plain');
+ 					scope.tagText = e.originalEvent.clipboardData.getData('text/plain');
 	       	scope.$apply(attrs.newTag);
-	       	// scope.tagText ="";
-	       	// }
 	       });
 			}
 		};

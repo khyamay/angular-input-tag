@@ -7,11 +7,11 @@
 <body>
 
 <div ng-controller="TagsCtrl" class="tag-input-ctn">
-  <div ng-repeat="(key, tag) in inputTags" class="input-tag">
+  <div ng-repeat="(key, tag) in inputTags" class="input-tag" >
     {{tag.name}}
     <div class="delete-tag" ng-click="deleteTag(key)">&times;</div>
   </div>
-  <input class="tagsmofo" id="mofo" autofocus type="text" tag-input ng-model="tagText" ng-style="{width: inputWidth}" new-tag="addTag()" delete-tag="deleteTag()">
+  <input id="tags" autofocus type="text" tag-input ng-model="tagText" ng-style="{width: inputWidth}" new-tag="addTag()" delete-tag="deleteTag()">
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
