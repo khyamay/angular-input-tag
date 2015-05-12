@@ -21,6 +21,7 @@ angular.module('myApp', [])
 		     		console.log(tag)
 		     			$scope.inputTags.push({name: tag});
 		     		};
+		     //this cause flickering of the text, needs to investigate
 		     $timeout(function(){$scope.tagText = '';})
 		     tags = [];
 
@@ -45,7 +46,6 @@ angular.module('myApp', [])
 	       scope.$watch(attrs.ngModel, function(value) {
 	         if (value != undefined) {
 
-	           // var temptag = angular.element('<span>'+ value+ '</span>');
 	           var tempEl = $('<span>' + value + '</span>').appendTo('body');
 	           var body = $document.find('body').eq(0);
 	           var itag = body.append(tempEl);
